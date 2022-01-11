@@ -1,29 +1,50 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="card-wrapper">
-        <div class="card">
-            <h1 class="center">Create an account</h1>
-            <form name="signup_form">
+  <div class="card-wrapper">
 
-                <label for="username">Username</label>
-                <input type="text" name="username" class="field" required>
+    <div class="card">
 
-                <label for="email">e-mail</label>
-                <input type="email" name="email" class="field" required>
+      <h1 class="center">Create an Account</h1>
 
-                <label for="password">Password</label>
-                <input type="password" name="password" class="field" required>
+      <form name="signup_form">
 
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" name="confirm-password" class="field" required>
+        <label for="name">Name</label>
+        <input type="text" name="name" class="field" required>
 
-                <input type="submit" value="Sign up" class="btn">
+        <label for="email">Email</label>
+        <input type="email" name="email" class="field" required>
 
-                <p class="error error--hidden"></p>
+        <label for="password">Password</label>
+        <input type="password" name="password" class="field" required>
 
-            </form>
-        </div>
+        <p class="error error--hidden"></p>
+
+        <input type="submit" value="Sign Up" class="btn">
+      
+      </form>
+      
     </div>
 
+    <div class="card">
+
+      <h1 class="center">Log In</h1>
+
+      <form name="login_form">
+
+        <label for="email">Email</label>
+        <input type="email" name="email" class="field" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" class="field" required>
+
+        <p class="error error--hidden"></p>
+
+        <input type="submit" value="Log In" class="btn">
+      
+      </form>
+      
+    </div>
+  
+  </div>
 {% endblock %}
