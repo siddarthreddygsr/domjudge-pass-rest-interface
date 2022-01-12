@@ -1,4 +1,4 @@
-/*
+/* 
   Colors: http://getuicolors.com
 */
 
@@ -30,7 +30,7 @@ body {
   font-size: 18px;
   line-height: 28px;
   color: var(--black);
-  background: var(--grey-light);
+  background: var(--white);
 }
 
 /* Typography */
@@ -64,12 +64,29 @@ p {
   justify-content: center;
   display: flex;
 }
-
+/* .img{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+} */
+.img img{
+	width: 500px;
+}
+@media screen and (max-width: 1000px){
+	/* .img img{
+		width: 400px;
+	} */
+}
+/* @media screen and (max-width: 900px){
+	.img{
+		display: none;
+	}
+} */
 .card {
   margin: 0 30px 60px;
   padding: 20px 40px;
   width: 460px;
-  box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15);
+  /* box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15); */
   border-radius: 5px;
   background: var(--white);
 }

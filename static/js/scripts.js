@@ -1,3 +1,25 @@
+const inputs = document.querySelectorAll(".input");
+
+
+function addcl(){
+	let parent = this.parentNode.parentNode;
+	parent.classList.add("focus");
+}
+
+function remcl(){
+	let parent = this.parentNode.parentNode;
+	if(this.value == ""){
+		parent.classList.remove("focus");
+	}
+}
+
+
+inputs.forEach(input => {
+	input.addEventListener("focus", addcl);
+	input.addEventListener("blur", remcl);
+});
+
+
 $("form[name=signup_form").submit(function(e) {
 
   var $form = $(this);
@@ -5,7 +27,7 @@ $("form[name=signup_form").submit(function(e) {
   var data = $form.serialize();
 
   $.ajax({
-    url: "/user/signup",
+    url: "/user/signup/",
     type: "POST",
     data: data,
     dataType: "json",
