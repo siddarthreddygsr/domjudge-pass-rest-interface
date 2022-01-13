@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, request, session, redirect,render_template
 from passlib.hash import pbkdf2_sha256
+import time
+import smtplib, ssl
 from app import db
 import uuid
 
@@ -14,12 +16,16 @@ class User:
 	def signup(self):
 		print(request.form)
 
+		verification_code = str(uuid.uuid4().hex)
 		# Create the user object
 		user = {
 		"_id": uuid.uuid4().hex,
 		"name": request.form.get('name'),
 		"email": request.form.get('email'),
-		"password": request.form.get('password')
+		"password": request.form.get('password'),
+		"verification_token": verification_code,
+		"token_generation_epoch": int(time.time()),
+		"verified": False
 		}
 
 		# Encrypt the password
@@ -29,17 +35,69 @@ class User:
 		if db.users.find_one({ "email": user['email'] }):
 			return jsonify({ "error": "Email address already in use" }), 400
 
+
+
+		#verify email address
+		smtp_server = "smtp.gmail.com"
+		port = 587  # For starttls
+		sender_email = "bot.ratemyuniversity@gmail.com"
+		password = "CringeMax#479"
+
+		# Create a secure SSL context
+		context = ssl.create_default_context()
+
+		# Try to log in to server and send email
+		print('Sending email')
+		try:
+			server = smtplib.SMTP(smtp_server,port)
+			server.ehlo()
+			server.starttls(context=context) # Secure the connection
+			server.ehlo()
+			server.login(sender_email, password)
+			receiver_email = user['email']
+			print(receiver_email)
+			message =  """\
+			Subject: %s
+
+			%s
+			""" % ("email verification", "Please verify your email address by clicking on the link below:\n\nhttp://127.0.0.1:5000/confirm_email/" + verification_code)
+			server.sendmail(sender_email, receiver_email, message)
+			print('Email sent')
+		except Exception as e:
+			# Print any error messages to stdout
+			print(e)
+		finally:
+			server.quit() 
+
 		if db.users.insert_one(user):
-			return self.start_session(user)
+			return self.email_verification()
+
 
 		return jsonify({ "error": "Signup failed" }), 400
 	
+	def confirm_email(self, token):
+		user = db.users.find_one({
+		"verification_token": token
+		})
+
+		if not user:
+			return jsonify({ "error": "Invalid verification token" }), 400
+		print(int(time.time()) - user['token_generation_epoch'])
+		if int(time.time()) - user['token_generation_epoch'] > 86400:
+			return jsonify({ "error": "Verification token expired" }), 400
+
+		user['verified'] = True
+		db.users.replace_one({ "_id": user['_id'] }, user)
+		print(user)
+		return redirect('/')
+
 	def signout(self):
 		session.clear()
 		return redirect('/')
 	
 	def sign_up(self):
 		return render_template('signup.html')
+	
 
 	def login(self):
 
@@ -47,7 +105,15 @@ class User:
 		"email": request.form.get('email')
 		})
 
+		verified = user['verified'] if user else False
+
 		if user and pbkdf2_sha256.verify(request.form.get('password'), user['password']):
-			return self.start_session(user)
+			if verified:
+				return self.start_session(user)
+			else:
+				return jsonify({ "error": "Email address not verified" }), 400
 		
 		return jsonify({ "error": "Invalid login credentials" }), 401
+	
+	def email_verification(self):
+		return render_template('email_verification.html')
