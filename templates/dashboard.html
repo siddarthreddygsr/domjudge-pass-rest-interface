@@ -1,30 +1,40 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="card-wrapper">
 
-    <div class="card">
 
-      <h1 class="center">Dashboard</h1>
-      <p class="center">You are currently logged in.</p>
+    <link rel="stylesheet" href="/static/css/stylesmainpage.css">
+    <nav>
+        <input id="nav-toggle" type="checkbox">
+        <div class="logo">RateMy<strong>UNIVERSITY</strong></div>
+        <ul class="links">
+            <!-- <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <label for="nav-toggle" class="icon-burger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </label> -->
+            <div class="dropdown">
+                <button class="dropbtn"><strong>{{ session['user']['name'] }}</strong></button>
+                <div class="dropdown-content">
+                  <strong>{{ session['user']['name'] }}</strong>
+                  <strong>{{ session['user']['email'] }}</strong>
+                </div>
+              </div>
+            <a href="/user/logout"><img class="logout" src="/static/images/logout.svg"></a>
+        </ul>
+    </nav>
 
-      <div class="center">
-        <a href="/user/signout" class="btn btn--secondary">Sign Out</a>
-      </div>
-    
+    <div class="main">
+        <section class="webdesigntuts-workshop">
+            <form action="" method="">		    
+                <input type="search" placeholder="Search for a University">		    	
+                <button>Search</button>
+            </form>
+        </section>
     </div>
-
-    <div class="card">
-
-      <h2 class="center">Your Info</h2>
-
-      <p>
-        <strong>ID:</strong> {{ session['user']['_id'] }}<br>
-        <strong>Name:</strong> {{ session['user']['name'] }}<br>
-        <strong>Email:</strong> {{ session['user']['email'] }}
-      </p>
-    
-    </div>
-  
-  </div>
 {% endblock %}

@@ -1,12 +1,25 @@
-from flask import Flask, jsonify, request, session, redirect,render_template
+from flask import Flask, jsonify, request, session, redirect,render_template, url_for
 from passlib.hash import pbkdf2_sha256
 import time
 import smtplib, ssl
 from app import db
 import uuid
 
-class User:
 
+smtp_server = "smtp.gmail.com"
+port = 587  # For starttls
+sender_email = "bot.ratemyuniversity@gmail.com"
+password = "CringeMax#479"
+
+# Create a secure SSL context
+context = ssl.create_default_context()
+server = smtplib.SMTP(smtp_server,port)
+server.ehlo()
+server.starttls(context=context) # Secure the connection
+server.ehlo()
+server.login(sender_email, password)
+
+class User:
 	def start_session(self, user):
 		del user['password']
 		session['logged_in'] = True
@@ -14,7 +27,6 @@ class User:
 		return jsonify(user), 200
 
 	def signup(self):
-		print(request.form)
 
 		verification_code = str(uuid.uuid4().hex)
 		# Create the user object
@@ -38,39 +50,30 @@ class User:
 
 
 		#verify email address
-		smtp_server = "smtp.gmail.com"
-		port = 587  # For starttls
-		sender_email = "bot.ratemyuniversity@gmail.com"
-		password = "CringeMax#479"
-
-		# Create a secure SSL context
-		context = ssl.create_default_context()
+		
 
 		# Try to log in to server and send email
-		print('Sending email')
-		try:
-			server = smtplib.SMTP(smtp_server,port)
-			server.ehlo()
-			server.starttls(context=context) # Secure the connection
-			server.ehlo()
-			server.login(sender_email, password)
-			receiver_email = user['email']
-			print(receiver_email)
-			message =  """\
-			Subject: %s
-
-			%s
-			""" % ("email verification", "Please verify your email address by clicking on the link below:\n\nhttp://127.0.0.1:5000/confirm_email/" + verification_code)
-			server.sendmail(sender_email, receiver_email, message)
-			print('Email sent')
-		except Exception as e:
-			# Print any error messages to stdout
-			print(e)
-		finally:
-			server.quit() 
 
 		if db.users.insert_one(user):
-			return self.email_verification()
+			print('Sending email')
+			print("1")
+			try:
+				receiver_email = user['email']
+				print(receiver_email)
+				message =  """\
+				Subject: %s
+
+				%s
+				""" % ("email verification", "Please verify your email address by clicking on the link below:\n\nhttp://127.0.0.1:5000/confirm_email/" + verification_code)
+				server.sendmail(sender_email, receiver_email, message)
+				print('Email sent')
+			except Exception as e:
+				# Print any error messages to stdout
+				print(e)
+			# finally:
+			# 	server.quit() 
+			print("redirecting")
+			return redirect('/email_verification/')
 
 
 		return jsonify({ "error": "Signup failed" }), 400
