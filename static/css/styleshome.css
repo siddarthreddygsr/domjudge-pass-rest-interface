@@ -203,6 +203,10 @@ a:hover{
         margin: 8px 0;
 	}
 
+	.login-content{
+		justify-content: center;
+	}
+
 	.img img{
 		width: 400px;
 	}
