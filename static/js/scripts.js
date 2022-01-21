@@ -77,9 +77,3 @@ function passtoggle(){
     state = true;
   }
 }
-
-let search=document.getElementById("search");
-let text=document.getElementById("text");
-search.onchange=function(){
-  text.innerHTML=search.value;
-}

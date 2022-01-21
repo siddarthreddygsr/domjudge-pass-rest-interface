@@ -3,12 +3,14 @@
 {% block content %}
 
 
-    <link rel="stylesheet" href="/static/css/stylesmainpage.css">
-    <nav>
-        <input id="nav-toggle" type="checkbox">
-        <div class="logo">RateMy<strong>UNIVERSITY</strong></div>
-        <ul class="links">
-            <!-- <li><a href="#home">Home</a></li>
+<link rel="stylesheet" href="/static/css/stylesmainpage.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+<nav>
+    <input id="nav-toggle" type="checkbox">
+    <div class="logo">RateMy<strong>UNIVERSITY</strong></div>
+    <ul class="links">
+        <!-- <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#work">Work</a></li>
             <li><a href="#projects">Projects</a></li>
@@ -18,25 +20,35 @@
                 <div class="line"></div>
                 <div class="line"></div>
             </label> -->
-            <div class="dropdown">
-                <button class="dropbtn"><strong>{{ session['user']['name'] }}</strong></button>
-                <div class="dropdown-content">
-                  <strong>{{ session['user']['name'] }}</strong>
-                  <strong>{{ session['user']['email'] }}</strong>
-                </div>
-              </div>
-            <a href="/user/sign out"><img class="logout" src="/static/images/logout.svg"></a>
-        </ul>
-    </nav>
+        <div class="dropdown">
+            <button class="dropbtn"><strong>{{ session['user']['name'] }}</strong></button>
+            <div class="dropdown-content">
+                <strong>{{ session['user']['name'] }}</strong>
+                <strong>{{ session['user']['email'] }}</strong>
+            </div>
+        </div>
+        <a href="/user/sign out"><img class="logout" src="/static/images/logout.svg"></a>
+    </ul>
+</nav>
+<div class="main">
+    <section class="searchbox">
+        <p id=text></p>
+        <form action="" method="">
+            <h2>Search for any University you want</h2>
+            <input type="text" placeholder="Search for a University" id="search" class="search-box">
+            <button>Search</button>
+        </form>
+    </section>
+</div>
 
-    <div class="main">
-        <section class="searchbox">
-            <p id=text></p>
-            <form action="" method="">
-                <h2>Search for any University you want</h2>
-                <input type="search" placeholder="Search for a University" id="search">		    	
-                <button>Search</button>
-            </form>
-        </section>
-    </div>
+<script>
+    jQuery(document).ready(function ($) {
+        $('.search-box').on('keyup', function () {
+            var searchTerm = $(this).val().toLowerCase();
+            text.innerHTML = searchTerm;
+            console.log(searchTerm);
+        });
+
+    });
+</script>
 {% endblock %}
