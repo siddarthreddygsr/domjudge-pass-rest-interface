@@ -7,6 +7,7 @@
 body{
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
+	background-image: url("/static/images/Dark-green-iPhone-wallpapers-iPhone-Wallpaper.jpeg");
 }
 
 .wave{
@@ -53,7 +54,7 @@ form{
 
 .login-content h2{
 	margin: 15px 0;
-	color: #333;
+	color: rgb(255, 255, 255);
 	text-transform: uppercase;
 	font-size: 2.9rem;
 }
@@ -139,7 +140,7 @@ form{
 	background: none;
 	padding: 0.5rem 0.7rem;
 	font-size: 1.2rem;
-	color: #555;
+	color: #fff;
 	font-family: 'poppins', sans-serif;
 }
 
@@ -223,4 +224,15 @@ a:hover{
 	.login-content{
 		justify-content: center;
 	}
+}
+
+span{
+	position: absolute;
+	right: 0;
+	transform: translateY(50%);
+	cursor: pointer;
+}
+
+.fa{
+	color: #a8a8aa;
 }

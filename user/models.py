@@ -53,7 +53,6 @@ class User:
 		
 
 		# Try to log in to server and send email
-
 		if db.users.insert_one(user):
 			print('Sending email')
 			print("1")
@@ -67,14 +66,12 @@ class User:
 				""" % ("email verification", "Please verify your email address by clicking on the link below:\n\nhttp://127.0.0.1:5000/confirm_email/" + verification_code)
 				server.sendmail(sender_email, receiver_email, message)
 				print('Email sent')
+				return redirect('/email_verification/')
 			except Exception as e:
 				# Print any error messages to stdout
-				print(e)
-			# finally:
-			# 	server.quit() 
+				print("error occured: ", e)
+				return jsonify({ "error": "Error sending email" }), 400
 			print("redirecting")
-			return redirect('/email_verification/')
-
 
 		return jsonify({ "error": "Signup failed" }), 400
 	

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/static/css/styleshome.css">
 <div class="card-wrapper">
     <div class="img">
-        <img src="../static/images/bg.svg">
+        <img src="../static/images/bg1.svg">
     </div>
     <!-- <div class="card">
 
@@ -63,7 +63,10 @@
                 </div>
                 <div class="div">
                     <h5>Password</h5>
-                    <input type="password" name="password" class="input">
+                    <input type="password" name="password" class="input" id="password">
+                    <span>
+                        <i class="fa fa-eye" id="eye" aria-hidden="true" id="password" onclick="passtoggle()"></i>
+                    </span>
                 </div>
             </div>
             <p class="error error--hidden"></p>

@@ -63,3 +63,23 @@ $("form[name=login_form").submit(function(e) {
 
   e.preventDefault();
 });
+
+var state = false;
+function passtoggle(){
+  if(state){
+    document.getElementById("password").setAttribute("type", "password");
+    document.getElementById("eye").style.color = "#a8a8aa";
+    state = false;
+  }
+  else{
+    document.getElementById("password").setAttribute("type", "text");
+    document.getElementById("eye").style.color = "#38d39f";
+    state = true;
+  }
+}
+
+let search=document.getElementById("search");
+let text=document.getElementById("text");
+search.onchange=function(){
+  text.innerHTML=search.value;
+}

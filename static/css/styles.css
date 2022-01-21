@@ -87,8 +87,10 @@ p {
   padding: 20px 40px;
   width: 460px;
   /* box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15); */
-  border-radius: 5px;
-  background: var(--white);
+  border-radius: 15px;
+  /* background: var(--white); */
+  background-color: rgba(0, 0, 0, 0.344);
+  backdrop-filter: blur(5px);
 }
 
 @media only screen and (max-width: 520px) {
@@ -100,8 +102,7 @@ p {
 @media only screen and (max-width: 520px) {
   .card {
     margin: 0 0 30px;
-    width: 100%;
-    border-radius: 0;
+    width: 90%;
   }
 }
 
