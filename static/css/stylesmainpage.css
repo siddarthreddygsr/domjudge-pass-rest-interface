@@ -20,7 +20,7 @@
   }
   
   * {
-    position: relative;
+    /* position: relative; */
     box-sizing: border-box;
   }
   
@@ -28,7 +28,7 @@
     margin: 0;
     font-family: sans-serif;
     font-size: 18px;
-    line-height: 28px;
+    /* line-height: 28px; */
     color: var(--black);
     background: var(--white);
   }
@@ -41,15 +41,15 @@
   h1 {
     margin: 0.5em 0 1em;
     font-size: 26px;
-    line-height: 1.2;
+    /* line-height: 1.2; */
     color: var(--almost-black);
   }
   
   h2 {
-    margin: 0.5em 0 1em;
+    margin: 0em 0 0em;
     font-size: 20px;
-    line-height: 1.2;
-    color: var(--grey-dark);
+    /* line-height: 1.2; */
+    /* color: var(--grey-dark); */
   }
   
   p {
@@ -359,6 +359,7 @@
 
 .main{
   padding-top: 50px;
+  width: 100%;
 }
 .searchbox {
   background-image: url('/static/images/liquid-cheese.svg');
@@ -400,7 +401,7 @@
 }
 
 .searchbox input {
-    background: linear-gradient(#dbdae1, #cacbce);
+    background: linear-gradient(#ffffff, #cacbce);
     box-shadow: 5px 5px 5px rgba(0,0,0,0.1),
     15px 15px 15px rgba(0,0,0,0.1),
     20px 20px 15px rgba(0,0,0,0.1),
@@ -441,10 +442,10 @@
 }
 
 
-.searchbox button {
+.searchbox button{
     background: #292929;
 	/* background: linear-gradient(#858585, #292929); */
-  background: linear-gradient(#dbdae1, #cacbce);
+  background: linear-gradient(#ffffff, #cacbce);
 	color: rgb(7, 201, 7);
     box-shadow: 5px 5px 5px rgba(0,0,0,0.1),
     15px 15px 15px rgba(0,0,0,0.1),
@@ -458,7 +459,7 @@
 	/* box-shadow: 0 2px 0 #000; */
 	/* color: #38d39f; */
 	display: block;
-	float: left;
+	/* float: left; */
 	font-family: 'Cabin', helvetica, arial, sans-serif;
 	font-size: 13px;
 	font-weight: 400;
@@ -470,7 +471,7 @@
 	/* text-shadow: 0 -1px 0 #000; */
 	width: 80px;
 }	
-
+	
 .searchbox button:hover,
 .searchbox button:focus {
     /* background: linear-gradient(#dbdae1, #cacbce); */
@@ -505,4 +506,34 @@
     .searchbox button {
         width: 15vw;
     }
+}
+
+.suggestions{
+  width:580px;
+  /* height: 100px; */
+  border:1px solid #000;
+  background-image: linear-gradient(#393939, #292929);
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.1),
+    15px 15px 15px rgba(0,0,0,0.1),
+    20px 20px 15px rgba(0,0,0,0.1),
+    30px 30px 15px rgba(0,0,0,0.1);
+    z-index: 1;
+  /* margin-top: 50px; */
+}
+.suggestions li{
+  background:#ffffff;
+  padding: 10px 10px;
+  border:1px black solid;
+}
+
+@media screen and (max-width: 768px) {
+    .suggestions {
+        width: 85vw;
+    }
+}
+
+.scroll{
+  height: 200px;
+  overflow-y: auto;
+  text-align: left;
 }
