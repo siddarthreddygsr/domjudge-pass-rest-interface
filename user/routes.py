@@ -26,3 +26,7 @@ def confirm_email(token):
 @app.route('/email_verification/')
 def email_verification():
 	return User().email_verification()
+
+@app.route('/search_unique_email/', methods=['POST'])
+def search_unique_email():
+	return User().search_unique_email()
