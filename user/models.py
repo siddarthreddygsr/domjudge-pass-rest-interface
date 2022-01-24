@@ -117,3 +117,13 @@ class User:
 	
 	def email_verification(self):
 		return render_template('email_verification.html')
+
+	def search_unique_email(self):
+		search = request.form.get('searchTerm')
+		search = "^" + search + ".*"
+		user = db.users.find(
+			{
+				"email" : { "$regex": search, "$options": "i" }
+			}
+		)
+		return jsonify(list(user))
