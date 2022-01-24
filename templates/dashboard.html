@@ -10,16 +10,6 @@
     <input id="nav-toggle" type="checkbox">
     <div class="logo">RateMy<strong>UNIVERSITY</strong></div>
     <ul class="links">
-        <!-- <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <label for="nav-toggle" class="icon-burger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </label> -->
         <div class="dropdown">
             <button class="dropbtn"><strong>{{ session['user']['name'] }}</strong></button>
             <div class="dropdown-content">
@@ -32,19 +22,20 @@
 </nav>
 <div class="main">
     <section class="searchbox">
-        <p id=text></p>
-        <form action="" method="">
+        <form action="" method="" autocomplete="off">
             <h2>Search for any University you want</h2>
-            <input type="text" placeholder="Search for a University" id="search" class="search-box">
-            <button>Search</button>
+            <div class="search">
+                <input type="text" placeholder="Search for a University" id="search" class="search-box">
+                <button>Search</button>
+            </div>
             <div class="scroll">
-                    <div class="suggestions" id="suggestions">
-                        <!-- suggestions from js will be inserted here -->
-                    </div>
-                    <div class="addnew suggestions">
-                        <h2><li>+ add new</li></h2>
-                    </div>
+                <div class="suggestions" id="suggestions">
+                    <!-- suggestions from js will be inserted here -->
                 </div>
+                <div class="addnew suggestions">
+                    <li><h2>+ add new</h2></li>
+                </div>
+            </div>
         </form>
     </section>
 </div>

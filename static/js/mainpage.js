@@ -12,17 +12,12 @@ jQuery(document).ready(function ($) {
             data: data,
             dataType: 'json',
             success: function (resp) {
-                console.log(resp[0]);
-
                 respin = ""
-                dummy = ""
                 for (let i = 0; i < resp.length; i++) 
                 {
                     respin += "<li><h2>" + resp[i].email + "</h2></li>";
-                    dummy = resp[i].email+ "," + dummy;
                 }
                 suggestions.innerHTML = respin;
-                text.innerHTML = dummy;
             }
         })
     });

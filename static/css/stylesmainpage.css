@@ -534,6 +534,18 @@
 
 .scroll{
   height: 200px;
+  display: none;
   overflow-y: auto;
   text-align: left;
+}
+.search:focus-within + .scroll{
+  display: block;
+}
+.addnew h2{
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: blanchedalmond;
 }
