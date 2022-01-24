@@ -38,38 +38,15 @@
             <input type="text" placeholder="Search for a University" id="search" class="search-box">
             <button>Search</button>
             <div class="scroll">
-                    <div class="suggestions">
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
-                        <li><h2>helllllll</h2></li>
+                    <div class="suggestions" id="suggestions">
+                        <!-- suggestions from js will be inserted here -->
                     </div>
-            </div>
+                    <div class="addnew suggestions">
+                        <h2><li>+ add new</li></h2>
+                    </div>
+                </div>
         </form>
     </section>
 </div>
-
-<script>
-    jQuery(document).ready(function ($) {
-        $('.search-box').on('keyup', function () {
-            var searchTerm = $(this).val().toLowerCase();
-            text.innerHTML = searchTerm;
-            console.log(searchTerm);
-        });
-
-    });
-</script>
+<script src="/static/js/mainpage.js"></script>
 {% endblock %}
