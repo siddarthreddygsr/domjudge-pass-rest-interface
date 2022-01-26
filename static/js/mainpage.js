@@ -15,7 +15,7 @@ jQuery(document).ready(function ($) {
                 respin = ""
                 for (let i = 0; i < resp.length; i++) 
                 {
-                    respin += "<li><h2>" + resp[i].email + "</h2></li>";
+                    respin += "<a href=\"/"+resp[i]._id+"\"><li><h2>" + resp[i].email + "</h2></li></a>";
                 }
                 suggestions.innerHTML = respin;
             }
