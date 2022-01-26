@@ -1,25 +1,9 @@
-{% extends "base.html" %}
+{% extends "structure.html" %}
 
 {% block content %}
 
-
 <link rel="stylesheet" href="/static/css/stylesmainpage.css">
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
-<nav>
-    <input id="nav-toggle" type="checkbox">
-    <div class="logo">RateMy<strong>UNIVERSITY</strong></div>
-    <ul class="links">
-        <div class="dropdown">
-            <button class="dropbtn"><strong>{{ session['user']['name'] }}</strong></button>
-            <div class="dropdown-content">
-                <strong>{{ session['user']['name'] }}</strong>
-                <strong>{{ session['user']['email'] }}</strong>
-            </div>
-        </div>
-        <a href="/user/signout"><img class="logout" src="/static/images/logout.svg"></a>
-    </ul>
-</nav>
 <div class="main">
     <section class="searchbox">
         <form action="" method="" autocomplete="off">
@@ -33,7 +17,7 @@
                     <!-- suggestions from js will be inserted here -->
                 </div>
                 <div class="addnew suggestions">
-                    <li><h2>Cant find your University here? Request here to get it on our site</h2></li>
+                    <a href="/adduni"><li><h2>Cant find your University here? Request here to get it on our site</h2></li></a>
                 </div>
             </div>
         </form>
