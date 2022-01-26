@@ -127,3 +127,7 @@ class User:
 			}
 		)
 		return jsonify(list(user))
+	
+	def adduni(self):
+		return render_template('adduni.html')
+

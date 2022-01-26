@@ -30,3 +30,7 @@ def email_verification():
 @app.route('/search_unique_email/', methods=['POST'])
 def search_unique_email():
 	return User().search_unique_email()
+
+@app.route('/adduni/')
+def adduni():
+	return User().adduni()
