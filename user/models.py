@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, session, redirect,render_template, ur
 from passlib.hash import pbkdf2_sha256
 import time
 import smtplib, ssl
-from app import db
+from app import db, client
 import uuid
 
 
@@ -17,9 +17,15 @@ server = smtplib.SMTP(smtp_server,port)
 server.ehlo()
 server.starttls(context=context) # Secure the connection
 server.ehlo()
-server.login(sender_email, password)
+# server.login(sender_email, password)
 
 class User:
+	def vc(self):
+		try:
+			a+belo
+		except:
+			return render_template('email_verification.html')
+
 	def start_session(self, user):
 		del user['password']
 		session['logged_in'] = True
@@ -67,6 +73,26 @@ class User:
 				server.sendmail(sender_email, receiver_email, message)
 				print('Email sent')
 				return redirect('/email_verification/')
+			except smtplib.SMTPSenderRefused:
+				try:
+					server.quit()
+				except:
+					print('Starting email server')
+					server.login(sender_email, password)
+				try:
+					receiver_email = user['email']
+					print(receiver_email)
+					message =  """\
+					Subject: %s
+
+					%s
+					""" % ("email verification", "Please verify your email address by clicking on the link below:\n\nhttp://127.0.0.1:5000/confirm_email/" + verification_code)
+					server.sendmail(sender_email, receiver_email, message)
+					print('Email sent')
+					return redirect('/email_verification/')
+				except Exception as e:
+					print(e)
+					return jsonify({ "error": "Error sending email" }), 500
 			except Exception as e:
 				# Print any error messages to stdout
 				print("error occured: ", e)
@@ -131,3 +157,10 @@ class User:
 	def adduni(self):
 		return render_template('adduni.html')
 
+	def adduni_image(self):
+		if 'uni-image' in request.files:
+			uni_image = request.files['uni-image']
+			client.save_file(uni_image.filename, uni_image)
+			db.unapproved_universities.insert({"university": request.form.get('university'), "image": uni_image.filename})
+
+		return 'Done!'
